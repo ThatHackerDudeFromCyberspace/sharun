@@ -65,9 +65,6 @@ jobs:
           docker run --rm -v "${{ github.workspace }}:/root" -w /root --platform=linux/arm64 alpine:latest /root/.github/create_aio_sharun.sh
 
       - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-artifact@v4
         with:
-          files: sharun*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: sharun*
